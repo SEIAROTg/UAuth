@@ -4,6 +4,10 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+
+const config = require('./config');
 
 const routes = require('./routes/index');
 
@@ -15,6 +19,13 @@ module.exports = () => {
 	app.set('view engine', 'ejs');
 	app.set('trust proxy', 'loopback');
 
+	app.use(session({
+		secret: config.session.secret,
+		resave: true,
+		saveUninitialized: false,
+		cookie: { secure: app.get('env') === 'development', httpOnly: true },
+		store: new FileStore({}),
+	}));
 	// uncomment after placing your favicon in /public
 	//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 	app.use(logger('dev'));
