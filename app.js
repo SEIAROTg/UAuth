@@ -23,7 +23,7 @@ module.exports = () => {
 		secret: config.session.secret,
 		resave: true,
 		saveUninitialized: false,
-		cookie: { secure: app.get('env') === 'development', httpOnly: true },
+		cookie: { secure: app.get('env') !== 'development', httpOnly: true },
 		store: new FileStore({}),
 	}));
 	// uncomment after placing your favicon in /public
