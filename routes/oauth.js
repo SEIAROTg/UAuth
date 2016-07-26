@@ -4,7 +4,9 @@ const express = require('express');
 const router = express.Router();
 const assert = require('chai').assert;
 
-router.get('/authorize', (req, res) => {
+const login = require('./login');
+
+router.all('/authorize', login, (req, res) => {
 	assert.strictEqual(req.query.response_type, 'code', 'response_type must be `code`');
 	assert.lengthOf(req.query.appid, 18, 'invalid appid');
 	assert.oneOf(req.query.scope, [], 'invalid scope');
