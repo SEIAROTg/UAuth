@@ -8,10 +8,6 @@ const app = require('./app');
 
 router.use('/app', app);
 
-router.post('/login', (req, res) => {
-
-});
-
 router.get('/loginLog', (req, res) => {
 
 });
