@@ -12,11 +12,11 @@ router.use('/oauth', oauth);
 router.use('/api', api);
 
 router.all('/', login, (req, res) => {
-	res.end('OK');
-});
-
-router.get('/login', (req, res) => {
-
+	if (req.method !== 'GET') {
+		res.redirect('/');
+	} else {
+		res.render('index');
+	}
 });
 
 module.exports = router;
