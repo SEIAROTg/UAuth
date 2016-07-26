@@ -4,108 +4,18 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Login</title>
-	<style>
-html, body {
-	margin: 0;
-	padding: 0;
-	background: #f5f5f5;
-	font-family: Tahoma, "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Segoe UI Symbol";
-}
-
-* {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-#container {
-	max-width: 260px;
-	margin: 0 auto;
-	text-align: center;
-}
-
-#logo {
-	display: block;
-	background: url(/images/logo.png);
-	width: 196px;
-	height: 79px;
-	margin: 50px auto;
-}
-
-h1 {
-	font-weight: normal;
-	color: #004477;
-}
-
-form {
-	text-align: left;
-}
-
-label {
-	display: block;
-	font-size: 12px;
-	margin: 5px 0;
-}
-
-input[type=text], input[type=password] {
-	background: #ddd;
-	height: 32px;
-	padding: 6px 12px;
-	box-sizing: border-box;
-	width: 100%;
-	border: none;
-	margin-bottom: 10px;
-	transition: background .3s linear;
-}
-
-input[type=text]:hover, input[type=password]:hover, input[type=text]:focus, input[type=password]:focus {
-	background: #ccc;
-}
-
-input[type=submit] {
-	background: #004477;
-	color: #fff;
-	border: none;
-	padding: 8px 16px;
-	font-size: 16px;
-	width: 100%;
-	margin-top: 10px;
-	transition: background .3s linear;
-}
-
-input[type=submit]:hover {
-	background: #006699;
-	cursor: pointer;
-}
-
-input[type=submit]:active {
-	background: #0077aa;
-}
-
-#wechat {
-	display: block;
-	background: url(/images/wechat.png) center 0 / 32px 32px no-repeat;
-	margin: 50px auto 0;
-	font-size: 12px;
-	padding-top: 37px;
-	color: #aaa;
-	text-decoration: none;
-}
-
-	</style>
-
-
+	<link rel="stylesheet" href="/css/client.css">
 </head>
 <body>
 	<div id="container">
 		<a id="logo" target="_blank" href="http://www.nottingham.edu.cn" title="The University of Nottingham Ningbo China"></a>
-		<h1>Log In</h1>
-		<form method="POST" action="?">
+		<h1 class="login">Log In</h1>
 		<form method="POST" action="#" class="left">
 			<label for="username">Username</label>
 			<input id="username" name="username" type="text" maxlength="50">
 			<label for="password">Password</label>
 			<input id="password" name="password" type="password" maxlength="50">
-			<input type="submit" value="Log In">
+			<input type="submit" value="Log In" class="primary">
 			<input type="hidden" name="isLogin" value="">
 		</form>
 		<a id="wechat" target="_self" href="#" title="Log in with WeChat">Log in with WeChat</a>

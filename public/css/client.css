@@ -1,0 +1,142 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #f5f5f5;
+	font-family: Tahoma, "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Segoe UI Symbol";
+}
+
+* {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+#container {
+	max-width: 260px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#logo {
+	display: block;
+	background: url(/images/logo.png);
+	width: 196px;
+	height: 79px;
+	margin: 50px auto 20px;
+}
+
+h1.login {
+	font-weight: normal;
+	color: #004477;
+}
+
+h1.app {
+	font-size: 28px;
+	margin: 40px 0 10px;
+}
+
+h2.would-like {
+	font-weight: normal;
+	font-size: 20px;
+	margin: 0;
+}
+
+input {
+	border-radius: 0;
+	background: transparent;
+	border: none;
+}
+
+label {
+	display: block;
+	font-size: 12px;
+	margin: 5px 0;
+}
+
+.left {
+	text-align: left;
+}
+
+input[type=button], input[type=submit] {
+	font-size: 16px;
+	width: 100%;
+	height: 35px;
+	margin-top: 10px;
+	transition: background .3s linear;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+input.secondary { background: #fff; color: #222; border: 1px solid #aaa; }
+input.secondary:hover { background: #eee; }
+input.secondary:active { background: #ddd; }
+
+input[type=text], input[type=password] {
+	background: #ddd;
+	font-size: 18px;
+	padding: 6px 10px;
+	box-sizing: border-box;
+	width: 100%;
+	border: none;
+	margin-bottom: 10px;
+	transition: background .3s linear;
+}
+
+input.primary {
+	background: #004477;
+	color: #fff;
+}
+
+input.primary:hover { background: #006699; }
+input.primary:active { background: #0077aa; }
+
+input[type=text]:hover, input[type=password]:hover, input[type=text]:focus, input[type=password]:focus {
+	background: #ccc;
+}
+
+span.after-center {
+	display: inline-block;
+	width: 0;
+}
+
+span.tag {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 12px;
+	color: #fff;
+	padding: 2px 4px;
+	border-radius: 5px;
+	font-weight: normal;
+	box-sizing: border-box;
+}
+
+span.tag.green { background: #008800; }
+span.tag.red { background: #880000; }
+
+#header {
+	margin: 20px 0 -20px;
+	height: 0;
+	text-align: right;
+}
+
+#logout {
+	background: transparent;
+	font-size: 14px;
+	color: #000088;
+	padding: 6px;
+	width: auto;
+	margin: 0;
+}
+
+#logout:hover {	background: #ddd; }
+
+#wechat {
+	display: block;
+	background: url(/images/wechat.png) center 0 / 32px 32px no-repeat;
+	margin: 50px auto 0;
+	font-size: 12px;
+	padding-top: 37px;
+	color: #aaa;
+	text-decoration: none;
+}
+
