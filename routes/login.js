@@ -1,7 +1,9 @@
 "use strict";
 
 module.exports = (req, res, next) => {
-	if (req.body.isLogin !== undefined) {
+	if (req.body.isLogout !== undefined) {
+		req.session.userId = undefined;
+	} else if (req.body.isLogin !== undefined) {
 		// TODO: preform login
 		req.session.userId = 6500001;
 	}
