@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Request for Permission</title>
+	<link rel="stylesheet" href="/css/client.css">
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<form method="POST" action="#">
+				<input id="logout" type="submit" value="Log out">
+				<input type="hidden" name="isLogout" value="">
+			</form>
+		</div>
+		<a id="logo" target="_blank" href="http://www.nottingham.edu.cn" title="The University of Nottingham Ningbo China"></a>
+		<h1 class="app">Blue Castle<span class="after-center"><span class="tag green">Official</span></span></h1>
+		<h2 class="would-like">would like to:</h2>
+		<ul class="left">
+			<li>View your student / staff ID</li>
+			<li>View your basic profile</li>
+			<li>View your email address</li>
+			<li>View your year</li>
+			<li>View your major and faculty</li>
+			<li>View your class<br>(Domestic student only)</li>
+		</ul>
+		<form method="POST" action="#">
+			<input id="deny" type="button" value="Deny" class="secondary">
+			<input id="allow" type="submit" name="allow" value="Allow" class="primary">
+			<input type="hidden" name="isAuthorization" value="">
+		</form>
+	</div>
+</body>
+</html>
