@@ -15,7 +15,7 @@ router.all('/', login, (req, res) => {
 	if (req.method !== 'GET') {
 		res.redirect('/');
 	} else {
-		res.render('index');
+		res.render('userpanel');
 	}
 });
 
