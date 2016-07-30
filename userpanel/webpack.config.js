@@ -13,6 +13,8 @@ module.exports = {
 	module: {
 		loaders: [{
 			test: /\.vue$/, loader: 'vue',
+		}, {
+			test: /\.js$/, loader: 'babel', exclude: /node_modules/,
 		}],
 	},
 	vue: {
@@ -20,7 +22,11 @@ module.exports = {
 			css: ExtractTextPlugin.extract('css'),
 		}
 	},
+	babel: {
+		presets: ['es2015'],
+		plugins: ['transform-runtime'],
+	},
 	plugins: [
-		new ExtractTextPlugin('css/userpanel.css'),
+		new ExtractTextPlugin('css/userpanel.bundle.css'),
 	],
 };

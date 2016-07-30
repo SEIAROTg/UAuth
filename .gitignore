@@ -34,3 +34,4 @@ config.json
 sessions
 
 *.bundle.js
+*.bundle.css
