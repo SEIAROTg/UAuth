@@ -4,7 +4,12 @@ const express = require('express');
 const router = express.Router();
 const assert = require('chai').assert;
 
+const isAdmin = require('./isAdmin');
+
+const myinfo = require('./myinfo');
 const app = require('./app');
+const loginLog = require('./loginLog');
+
 router.use((req, res, next) => {
 	if (req.session.userId) {
 		next();
@@ -16,10 +21,10 @@ router.use((req, res, next) => {
 	}
 });
 
+router.get('/myinfo', isAdmin, myinfo);
+
 router.use('/app', app);
 
-router.get('/loginLog', (req, res) => {
-
-});
+router.get('/loginLog', loginLog);
 
 module.exports = router;

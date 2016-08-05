@@ -2,13 +2,13 @@
 
 <navbar>
 	<div class="left-float">
-		<span class="logo">UAuth</span>
-		<a v-link="'/mylogins'">My Logins</a>
-		<a v-link="'/myapp'">My API</a>
-		<a v-link="'/app'">Admin</a>
+		<span class="logo">UAuth</span><!--
+		--><a v-link="'/mylogins'">My Logins</a><!--
+		--><a v-link="'/myapp'">My API</a><!--
+		--><a v-link="'/app'" v-if="isAdmin">Admin</a>
 	</div>
 	<div class="right-float">
-		<span class="name">John Doe</span>
+		<span class="name">{{userName}}</span>
 		<a v-on:click="logout" class="logout">Logout</a>
 	</div>
 </navbar>
@@ -17,6 +17,8 @@
 
 <script>
 
+import getMyInfo from '../myinfo.js';
+
 export default {
 	methods: {
 		logout () {
@@ -24,12 +26,26 @@ export default {
 				'isLogout': '',
 			}, {
 				emulateJSON: true,
+				timeout: 50000,
 			}).then(() => {
 				window.location.replace('/');
 			}, () => {
 				alert('Error when logging out');
 			});
 		},
+	},
+	data() {
+		return {
+			userName: '',
+			isAdmin: false,
+		}
+	},
+	ready() {
+		getMyInfo()
+		.then(myInfo => {
+			this.userName = myInfo.name;
+			this.isAdmin = myInfo.isAdmin;
+		});
 	}
 }
 
