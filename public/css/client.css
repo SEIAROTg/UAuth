@@ -141,3 +141,7 @@ span.tag.red { background: #880000; }
 	text-decoration: none;
 }
 
+.prompt {
+	color: #e22;
+	text-align: center;
+}

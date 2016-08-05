@@ -1,15 +1,31 @@
 "use strict";
 
-module.exports = (req, res, next) => {
+const co = require('co');
+
+const authentication = require('./authentication');
+
+module.exports = co.wrap(function*(req, res, next) {
 	if (req.body.isLogout !== undefined) {
 		req.session.userId = undefined;
+		res.render('login', {
+			prompt: '',
+		});
 	} else if (req.body.isLogin !== undefined) {
-		// TODO: preform login
-		req.session.userId = 6500001;
-	}
-	if (req.session.userId) {
+		let userInfo = yield authentication(req.body.username, req.body.password);
+		if (userInfo) {
+			req.session.userId = userInfo.id;
+			req.session.userName = userInfo.name;
+			next();
+		} else {
+			res.render('login', {
+				prompt: 'Incorrect username or password',
+			})
+		}
+	} else if (req.session.userId) {
 		next();
 	} else {
-		res.render('login');
+		res.render('login', {
+			prompt: '',
+		});
 	}
-};
+});
