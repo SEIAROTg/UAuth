@@ -18,17 +18,6 @@ router.all('/', login, (req, res) => {
 	}
 });
 
-router.use((req, res, next) => {
-	if (req.session.userId) {
-		next();
-	} else {
-		res.status(401).json({
-			code: '401',
-			message: 'not logged in',
-		})
-	}
-});
-
 router.use('/api', api);
 
 module.exports = router;
