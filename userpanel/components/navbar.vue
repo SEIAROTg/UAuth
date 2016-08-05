@@ -9,7 +9,10 @@
 	</div>
 	<div class="right-float">
 		<span class="name">{{userName}}</span>
-		<a v-on:click="logout" class="logout">Logout</a>
+		<form method="POST" action="/" style="display:inline">
+			<input type="hidden" name="isLogout" value="">
+			<button type="submit" class="logout">Logout</button>
+		</form>
 	</div>
 </navbar>
 
@@ -20,19 +23,6 @@
 import getMyInfo from '../myinfo.js';
 
 export default {
-	methods: {
-		logout () {
-			this.$http.post('/', {
-				'isLogout': '',
-			}, {
-				emulateJSON: true,
-			}).then(() => {
-				window.location.replace('/');
-			}, () => {
-				alert('Error when logging out');
-			});
-		},
-	},
 	data() {
 		return {
 			userName: '',
@@ -79,17 +69,19 @@ navbar {
 	width: 100%;
 	z-index: 1000;
 }
-a, .logo {
+a, .logo, .logout {
+	border: none;
+	background: inherit;
 	display: inline-block;
 	color: inherit;
 	text-decoration: none;
 	transition: color .1s linear, background .1s linear;
 	vertical-align: top;
 }
-a {
+a, .logout {
 	padding: 0 12px;
 }
-a:hover, a.v-link-active {
+a:hover, a.v-link-active, .logout:hover {
 	color: #000;
 	background: #d2d2d2;
 }
