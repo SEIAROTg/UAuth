@@ -8,9 +8,6 @@
 import navbar from './components/navbar.vue';
 import './filters/moment.js';
 
-let Navbar = Vue.extend(navbar);
-new Navbar({ el: 'navbar' });
-
 export default {
 	components: {
 		navbar,

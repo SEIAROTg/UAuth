@@ -23,7 +23,7 @@
 			<td v-if="items.includes('status') && app.status === 'enabled'"><span class="label label-success">Enabled</span></td>
 		</tr>
 		<tr v-if="!apps.length">
-			<td colspan="2" class="center">{{emptyPrompt}}</td>
+			<td :colspan="items.length" class="center">{{emptyPrompt}}</td>
 		</tr>
 	</tbody>
 </table>

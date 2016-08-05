@@ -8,7 +8,7 @@ import app from './views/app.vue';
 let router = new VueRouter();
 
 router.map({
-	'/mylogins/:page': {
+	'/mylogins/': {
 		component: mylogins,
 	},
 	'/myapp': {
@@ -30,7 +30,6 @@ router.map({
 
 router.redirect({
 	'/': '/mylogins',
-	'/mylogins': '/mylogins/1',
 });
 
 export default router;
