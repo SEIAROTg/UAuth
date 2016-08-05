@@ -1,6 +1,11 @@
 <template>
 
-<legend>{{app.name}} <span class="label label-warning status">{{app.status | capitalize}}</span></legend>
+<legend>{{app.name}}
+	<span v-if="app.status === 'pending'" class="label label-warning">Pending</span>
+	<span v-if="app.status === 'rejected'" class="label label-danger">Rejected</span>
+	<span v-if="app.status === 'disabled'" class="label label-danger">Disabled</span>
+	<span v-if="app.status === 'enabled'" class="label label-success">Enabled</span>
+</legend>
 
 <p>{{app.description}}</p>
 
