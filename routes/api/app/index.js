@@ -5,10 +5,12 @@ const router = express.Router();
 
 const isAdmin = require('../isAdmin');
 
+const my = require('./my');
 const apply = require('./apply');
 const transfer = require('./transfer');
 const reset = require('./reset');
 const domains = require('./domains');
+const all = require('./all');
 const get = require('./get');
 const approve = require('./approve');
 const reject = require('./reject');
@@ -16,9 +18,7 @@ const del = require('./del');
 
 
 // 列出属于当前用户的app
-router.get('/my', (req, res) => {
-
-});
+router.get('/my', my);
 
 // 申请接口
 router.post('/', apply);
@@ -35,9 +35,7 @@ router.put('/:id/domains', domains);
 router.use(isAdmin);
 
 // 列出app
-router.get('/all', (req, res) => {
-
-});
+router.get('/all', all);
 
 // 查看app信息
 router.get('/:id', get);
