@@ -18,7 +18,8 @@ const scopes = [
 
 router.all('/authorize', login, (req, res) => {
 	assert.strictEqual(req.query.response_type, 'code', 'response_type must be `code`');
-	assert(typeof req.query.appid === 'string' && req.query.appid.length === 18, 'invalid appid');
+	assert.isString(req.query.appid, 'invalid appid');
+	assert.lengthOf(req.query.appid.length, 18, 'invalid appid');
 	assert(req.query.scope && !req.query.scope.split('+').map(x => scopes.includes(x)).includes(false), 'invalid scope');
 
 	res.render('confirm');
@@ -26,8 +27,10 @@ router.all('/authorize', login, (req, res) => {
 
 router.get('/userinfo', (req, res) => {
 	assert.strictEqual(req.query.grant_type, 'authorization_code', 'grant_type must be `authorization_code`');
-	assert(typeof req.query.appid === 'string' && req.query.appid.length === 18, 'invalid appid');
-	assert(typeof req.query.appsecret === 'string' && req.query.appsecret.length === 32, 'invalid appsecret');
+	assert.isString(req.query.appid, 'invalid appid');
+	assert.lengthOf(req.query.appid.length, 18, 'invalid appid');
+	assert.isString(req.query.appsecret, 'invalid appsecret');
+	assert.lengthOf(req.query.appsecret.length, 40, 'invalid appsecret');
 });
 
 module.exports = router;
