@@ -1,6 +1,5 @@
 const co = require('co');
 
-const promisify = require('../../../common');
 const db = require('../../../db');
 
 const forbiddenStatus = [

@@ -1,7 +1,7 @@
 const co = require('co');
 const assert = require('chai').assert;
 
-const promisify = require('../../../common');
+const promisify = require('../../../common').promisify;
 const db = require('../../../db');
 
 const forbiddenStatus = [

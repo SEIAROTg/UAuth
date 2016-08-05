@@ -1,7 +1,7 @@
 const co = require('co');
 const crypto = require('crypto');
 
-const promisify = require('../../../common');
+const promisify = require('../../../common').promisify;
 const db = require('../../../db');
 
 module.exports = co.wrap(function*(req, res) {
