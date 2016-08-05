@@ -74,6 +74,17 @@ yield db.query(`CREATE TABLE IF NOT EXISTS admin (
 	isRoot BOOLEAN NOT NULL
 )`);
 
+yield db.query(`CREATE TABLE IF NOT EXISTS log (
+	userId VARCHAR(7) NOT NULL,
+	time DATETIME NOT NULL,
+	action ENUM("Authorization", "Authentication") NOT NULL,
+	appid VARCHAR(18),
+	os VARCHAR(50),
+	browser VARCHAR(50),
+	ip VARCHAR(50),
+	FOREIGN KEY (appid) REFERENCES app(appid)
+)`);
+
 yield db.query(`CREATE EVENT IF NOT EXISTS clearExpiredCode
 ON SCHEDULE
 	EVERY 1 DAY
