@@ -1,5 +1,4 @@
-const co = require('co');
-
+const asynchronize = require('../../../common').asynchronize;
 const db = require('../../../db');
 
 function transformApp(row) {
@@ -12,7 +11,7 @@ function transformApp(row) {
 	};
 }
 
-module.exports = co.wrap(function*(req, res) {
+module.exports = asynchronize(function*(req, res) {
 
 	let apps = yield db.query('SELECT appid, name, description, ownerType, status FROM app WHERE ownerUser=?', [req.session.userId]);
 

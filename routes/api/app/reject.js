@@ -1,8 +1,7 @@
-const co = require('co');
-
+const asynchronize = require('../../../common').asynchronize;
 const db = require('../../../db');
 
-module.exports = co.wrap(function*(req, res) {
+module.exports = asynchronize(function*(req, res) {
 	if (!req.isAdmin) {
 		res.status(403).json({
 			code: 403,

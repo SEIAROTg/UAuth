@@ -1,8 +1,7 @@
-const co = require('co');
-
+const asynchronize = require('../../common').asynchronize;
 const db = require('../../db');
 
-module.exports = co.wrap(function*(req, res, next) {
+module.exports = asynchronize(function*(req, res, next) {
 	if (!req.userId) {
 		req.isAdmin = false;
 	} else {

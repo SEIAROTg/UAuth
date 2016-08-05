@@ -1,7 +1,6 @@
-const co = require('co');
 const assert = require('chai').assert;
 
-const promisify = require('../../../common').promisify;
+const {asynchronize, promisify} = require('../../../common');
 const db = require('../../../db');
 
 const forbiddenStatus = [
@@ -9,7 +8,7 @@ const forbiddenStatus = [
 	'deleted',
 ];
 
-module.exports = co.wrap(function*(req, res) {
+module.exports = asynchronize(function*(req, res) {
 
 	try {
 		assert.isArray(req.body.domains, 'invalid domains');

@@ -1,5 +1,4 @@
 const mariasql = require('mariasql');
-const co = require('co');
 
 const config = require('./config');
 

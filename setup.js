@@ -3,9 +3,9 @@
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
-const co = require('co');
 const mariasql = require('mariasql');
 const promisify = require('./common').promisify;
+const asynchronize = require('./common').asynchronize;
 
 co(function*() {
 

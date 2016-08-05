@@ -1,6 +1,6 @@
-const co = require('co');
+const asynchronize = require('../common').asynchronize;
 
-module.exports = co.wrap(function*(username, password) {
+module.exports = asynchronize(function*(username, password) {
 	// TODO: perform login
 	return {
 		id: '6500000',

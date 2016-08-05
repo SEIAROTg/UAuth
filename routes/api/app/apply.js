@@ -1,13 +1,13 @@
-const co = require('co');
 const crypto = require('crypto');
 const assert = require('chai').assert;
 
+const asynchronize = require('../../../common').asynchronize;
 const db = require('../../../db');
 
 const ownerTypes = ['individual', 'org', 'university'];
 const scopes = ['id', 'basic', 'email', 'year', 'major', 'dept', 'class'];
 
-module.exports = co.wrap(function*(req, res) {
+module.exports = asynchronize(function*(req, res) {
 	try {
 		assert.isString(req.body.name, 'invalid name');
 		assert.isAtLeast(req.body.name.length, 5, 'name too short');

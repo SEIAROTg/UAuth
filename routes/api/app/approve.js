@@ -1,10 +1,9 @@
-const co = require('co');
 const crypto = require('crypto');
 
-const promisify = require('../../../common').promisify;
+const {asynchronize, promisify} = require('../../../common');
 const db = require('../../../db');
 
-module.exports = co.wrap(function*(req, res) {
+module.exports = asynchronize(function*(req, res) {
 	if (!req.isAdmin) {
 		res.status(403).json({
 			code: 403,

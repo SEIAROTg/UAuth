@@ -1,10 +1,10 @@
 "use strict";
 
-const co = require('co');
+const asynchronize = require('../common').asynchronize;
 
 const authentication = require('./authentication');
 
-module.exports = co.wrap(function*(req, res, next) {
+module.exports = asynchronize(function*(req, res, next) {
 	if (req.body.isLogout !== undefined) {
 		req.session.userId = undefined;
 		res.render('login', {

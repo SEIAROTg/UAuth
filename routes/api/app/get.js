@@ -1,8 +1,7 @@
-const co = require('co');
-
+const asynchronize = require('../../../common').asynchronize;
 const db = require('../../../db');
 
-module.exports = co.wrap(function*(req, res) {
+module.exports = asynchronize(function*(req, res) {
 	let app = yield db.query('SELECT * FROM app WHERE appid=? LIMIT 1', [req.params.id]);
 	if (!app.length) {
 		res.status(404).json({
