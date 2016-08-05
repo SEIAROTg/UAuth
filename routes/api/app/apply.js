@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const assert = require('chai').assert;
 
-const asynchronize = require('../../../common').asynchronize;
+const {promisify, asynchronize} = require('../../../common');
 const db = require('../../../db');
 
 const ownerTypes = ['individual', 'org', 'university'];
@@ -18,6 +18,7 @@ module.exports = asynchronize(function*(req, res) {
 		assert.isString(req.body.ownerName, 'invalid organization / department');
 		assert.isAtMost(req.body.ownerName.length, 50, 'organization / department too long');
 		assert.isString(req.body.scope, 'invalid scope');
+		assert.isAbove(req.body.scope.length, 0, 'empty scope');
 		for (let scope of req.body.scope.split('+')) {
 			assert.oneOf(scope, scopes, 'invalid scope');
 		}

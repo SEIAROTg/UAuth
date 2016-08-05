@@ -8,14 +8,16 @@
 	<div class="form-group">
 		<label class="control-label col-sm-1" for="name">App Name:</label>
 		<div class="col-sm-5">
-			<input class="form-control" id="name" v-model="name" placeholder="Enter name" maxlength="50">
+			<input class="form-control" id="name" v-model="name" placeholder="Enter name" maxlength="50" v-validate:name="{minlength: 5}">
+			<div class="error" v-show="$applyForm.name.minlength && $applyForm.name.touched">Name too short</div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-1" for="description">Description:</label>
 		<div class="col-sm-5">
-			<input class="form-control" id="description" v-mode="description" placeholder="Briefly describe your app" maxlength="100">
+			<input class="form-control" id="description" v-model="description" placeholder="Briefly describe your app" maxlength="100" v-validate:description="{minlength: 10}">
+			<div class="error" v-show="$applyForm.description.minlength && $applyForm.description.touched">Description too short</div>
 		</div>
 	</div>
 
@@ -48,6 +50,7 @@
 				<checkbox value="major">Major</checkbox>
 				<checkbox value="class">Class</checkbox>
 			</checkbox-group>
+			<div class="error" v-show="!scope.length">Must choose at least one scope</div>
 		</div>
 	</div>
 
@@ -60,12 +63,22 @@
 
 	<div class="form-group"> 
 		<div class="col-sm-offset-1 col-sm-5">
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary" :class="{disabled: $applyForm.invalid || !scope.length}">Submit</button>
 		</div>
 	</div>
 
 </form>
 </validator>
+
+<modal :show.sync="showSuccess" backdrop="false">
+	<div slot="modal-header" class="modal-header">
+		<h4 class="modal-title">Success</h4>
+	</div>
+	<div slot="modal-body" class="modal-body">Your application has been successfully submitted.</div>
+	<div slot="modal-footer" class="modal-footer">
+		<button type="button" class="btn btn-default" @click="$router.go('/myapp')">OK</button>
+	</div>
+</modal>
 
 </template>
 
@@ -77,10 +90,36 @@ export default {
 		radioGroup: VueStrap.radioGroup,
 		checkbox: VueStrap.checkboxBtn,
 		checkboxGroup: VueStrap.checkboxGroup,
+		modal: VueStrap.modal,
 	},
 	methods: {
 		submit() {
-			
+			if (this.$applyForm.valid) {
+				let ownerName;
+				switch (this.ownerType) {
+					case 'individual':
+						ownerName = null;
+						break;
+					case 'org':
+						ownerName = this.org;
+						break;
+					case 'university':
+						ownerName = this.dept;
+						break;
+				}
+
+				this.$http.post('/api/app/', {
+					name: this.name,
+					ownerType: this.ownerType,
+					ownerName: ownerName,
+					description: this.description,
+					scope: this.scope.join('+'),
+					reason: this.reason,
+				})
+				.then(() => {
+					this.showSuccess = true;
+				});
+			}
 		},
 	},
 	data() {
@@ -91,11 +130,17 @@ export default {
 			org: '',
 			dept: '',
 			reason: '',
+			showSuccess: false,
 		};
 	}
 }
 </script>
 
 <style scoped>
+
+.error {
+	color: #d22;
+	margin: 3px 0 -5px;
+}
 
 </style>
