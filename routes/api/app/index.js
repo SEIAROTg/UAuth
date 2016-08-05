@@ -5,6 +5,7 @@ const router = express.Router();
 
 const isAdmin = require('../isAdmin');
 
+const apply = require('./apply');
 const transfer = require('./transfer');
 const reset = require('./reset');
 const domains = require('./domains');
@@ -20,9 +21,7 @@ router.get('/my', (req, res) => {
 });
 
 // 申请接口
-router.post('/', (req, res) => {
-
-});
+router.post('/', apply);
 
 // 转让app
 router.post('/:id/transfer', transfer);

@@ -48,7 +48,7 @@ yield db.connect({
 
 yield db.query(`CREATE TABLE IF NOT EXISTS app (
 	appid VARCHAR(18) PRIMARY KEY,
-	appsecret VARCHAR(40) NOT NULL,
+	appsecret VARCHAR(40),
 	name TEXT NOT NULL,
 	ownerType ENUM("individual", "org", "university") NOT NULL,
 	ownerName TEXT NOT NULL,
