@@ -8,6 +8,16 @@
 import navbar from './components/navbar.vue';
 import './filters/moment.js';
 
+Vue.http.interceptors.push((req, next) => {
+	next((resp) => {
+		let data = resp.json();
+		if (data.code !== 0 && data.message) {
+			alert(data.message);
+		}
+		resp.data = data.data;
+	});
+});
+
 export default {
 	components: {
 		navbar,

@@ -7,8 +7,7 @@ export default function getMyInfo() {
 		} else {
 			Vue.http.get('/api/myinfo')
 			.then((resp) => {
-				myinfo = resp.json();
-				resolve(Object.assign({}, myinfo));
+				resolve(Object.assign({}, resp.data));
 			}, reject);
 		}
 	})

@@ -19,34 +19,13 @@ export default {
 	},
 	data() {
 		return {
-			apps: [{
-				id: 'asdasdasdasdasdasd',
-				name: 'UAttend',
-				description: 'A universal attendance checker',
-				ownerType: 'university',
-				status: 'pending'
-			}, {
-				id: 'asdasdasdasdasdasd',
-				name: 'UAttend',
-				description: 'A universal attendance checker',
-				ownerType: 'individual',
-				status: 'disabled'
-			}, {
-				id: 'asdasdasdasdasdasd',
-				name: 'UAttend',
-				description: 'A universal attendance checker',
-				ownerType: 'org',
-				status: 'enabled'
-			}, {
-				id: 'asdasdasdasdasdasd',
-				name: 'UAttend',
-				description: 'A universal attendance checker',
-				ownerType: 'university',
-				status: 'rejected'
-			}],
-			items: ['name', 'description', 'status'],
+			apps: [],
 		}
-	}
+	},
+	ready() {
+		this.$http.get('/api/app/my')
+		.then(resp => this.apps = resp.data);
+	},
 }
 </script>
 
