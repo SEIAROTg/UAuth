@@ -18,7 +18,7 @@
 				<span v-if="app.ownerType === 'university'" class="label label-primary">University</span>
 				<span v-if="app.ownerType === 'org'" class="label label-warning">Organization</span>
 				<span v-if="app.ownerType === 'individual'" class="label label-danger">Individual</span>
-				{{app.ownerName}}
+				<span class="ownerName">{{app.ownerName}}</span>
 			</div>
 		</div>
 		<div class="row">
@@ -31,8 +31,8 @@
 				<span class="label label-default scope" v-for="scope in app.scopes">{{scope}}</span>
 			</div>
 		</div>
-		<hr v-if="!isAdmin">
-		<button @click="showTransfer" v-if="!isAdmin" class="btn btn-danger">Transfer</button>
+		<hr v-if="!isAdmin && app.status !== 'pending'">
+		<button @click="showTransfer" v-if="!isAdmin && app.status !== 'pending'" class="btn btn-danger">Transfer</button>
 	</div>
 </div>
 
@@ -65,7 +65,7 @@
 </div>
 
 <div class="panel panel-default">
-	<div class="panel-heading">Status</div>
+	<div class="panel-heading">Manage</div>
 	<div class="panel-body">
 		<p v-if="app.reason === ''"><i>No content here</i></p>
 		<p v-if="app.reason !== '' && app.status === 'pending'">{{app.reason}}</p>
@@ -249,6 +249,10 @@ export default {
 </script>
 
 <style scoped>
+
+.ownerName {
+	margin-left: 5px;
+}
 
 .status {
 	display: inline-block;

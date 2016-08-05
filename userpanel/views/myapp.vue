@@ -12,31 +12,15 @@ export default {
 	},
 	data() {
 		return {
-			app: {
-				name: 'UAttend',
-				ownerType: 'university',
-				ownerName: 'spdpo',
-				ownerUserId: '6515000',
-				ownerUserName: 'John Doe',
-				appid: 'dsadsadsadsaasdasd',
-				appsecret: 'asdfghladkjfhlaksdjhflashdfglasjfasasdf',
-				status: 'pending',
-				scopes: [
-					'id',
-					'basic',
-					'email',
-					'year',
-					'major',
-					'dept',
-					'class',
-				],
-				reason: '',
-				domains: [
-					'http://asdf.unnc.pub',
-				],
-			}
+			app: {}
 		};
 	},
+	ready() {
+		this.$http.get(`/api/app/${this.$route.params.id}`)
+		.then((ret) => {
+			this.app = ret.data;
+		});
+	}
 };
 
 </script>
