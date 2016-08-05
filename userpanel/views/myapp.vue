@@ -15,9 +15,9 @@ export default {
 			app: {
 				name: 'UAttend',
 				ownerType: 'university',
-				owner: 'spdpo',
-				adminId: '6515000',
-				adminName: 'John Doe',
+				ownerName: 'spdpo',
+				ownerUserId: '6515000',
+				ownerUserName: 'John Doe',
 				appid: 'dsadsadsadsaasdasd',
 				appsecret: 'asdfghladkjfhlaksdjhflashdfglasjfasasdf',
 				status: 'pending',

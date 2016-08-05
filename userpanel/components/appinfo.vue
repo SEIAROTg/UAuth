@@ -1,10 +1,10 @@
 <template>
 
 <legend>{{app.name}}
-	<span v-if="app.status === 'pending'" class="label label-warning">Pending</span>
-	<span v-if="app.status === 'rejected'" class="label label-danger">Rejected</span>
-	<span v-if="app.status === 'disabled'" class="label label-danger">Disabled</span>
-	<span v-if="app.status === 'enabled'" class="label label-success">Enabled</span>
+	<span v-if="app.status === 'pending'" class="label label-warning status">Pending</span>
+	<span v-if="app.status === 'rejected'" class="label label-danger status">Rejected</span>
+	<span v-if="app.status === 'disabled'" class="label label-danger status">Disabled</span>
+	<span v-if="app.status === 'enabled'" class="label label-success status">Enabled</span>
 </legend>
 
 <p>{{app.description}}</p>
@@ -18,12 +18,12 @@
 				<span v-if="app.ownerType === 'university'" class="label label-primary">University</span>
 				<span v-if="app.ownerType === 'org'" class="label label-warning">Organization</span>
 				<span v-if="app.ownerType === 'individual'" class="label label-danger">Individual</span>
-				{{app.owner}}
+				{{app.ownerName}}
 			</div>
 		</div>
 		<div class="row">
 			<label for="appsecret" class="col-xs-2">Administrator</label>
-			<div id="appsecret" class="col-xs-5">{{app.adminName}} ({{app.adminId}})</div>
+			<div id="appsecret" class="col-xs-5">{{app.ownerUserName}} ({{app.ownerUserId}})</div>
 		</div>
 		<div class="row">
 			<label for="scope" class="col-xs-2">Scope</label>

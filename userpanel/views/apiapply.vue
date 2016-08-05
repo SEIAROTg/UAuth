@@ -86,7 +86,7 @@ export default {
 	data() {
 		return {
 			ownerType: 'individual',
-			owner: '',
+			ownerName: '',
 			scope: ['id', 'basic'],
 			org: '',
 			dept: '',

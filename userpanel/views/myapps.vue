@@ -1,7 +1,7 @@
 <template>
 
 <p>
-<a class="btn btn-primary" v-link="'/myapi/apply'">Apply for an API</a>
+<a class="btn btn-primary" v-link="'/myapp/apply'">Apply for an API</a>
 </p>
 
 <app-list :apps="apps" :items="items"></app-list>
