@@ -5,12 +5,12 @@ const asynchronize = require('../common').asynchronize;
 const authentication = require('./authentication');
 
 module.exports = asynchronize(function*(req, res, next) {
-	if (req.body.isLogout !== undefined) {
+	if (req.method === 'POST' && req.body.isLogout !== undefined) {
 		req.session.userId = undefined;
 		res.render('login', {
 			prompt: '',
 		});
-	} else if (req.body.isLogin !== undefined) {
+	} else if (req.method === 'POST' && req.body.isLogin !== undefined) {
 		let userInfo = yield authentication(req.body.username, req.body.password);
 		if (userInfo) {
 			req.session.userId = userInfo.id;
