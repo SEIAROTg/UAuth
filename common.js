@@ -19,12 +19,12 @@ function promisify(func, withoutError = false) {
 function asynchronize(func) {
 	let _this = this;
 	return function() {
-		co(func.bind(_this, ...arguments)).done();
+		return co(func.bind(_this, ...arguments)).done();
 	}
 }
 
 Promise.prototype.done = function() {
-	this.catch(x => setTimeout(() => console.log(x.stack), 0));
+	return this.catch(x => setTimeout(() => console.log(x.stack), 0));
 }
 
 module.exports = {
