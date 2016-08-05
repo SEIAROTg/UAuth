@@ -18,6 +18,8 @@ Vue.http.interceptors.push((req, next) => {
 	});
 });
 
+Vue.http.options.timeout = 5000;
+
 export default {
 	components: {
 		navbar,

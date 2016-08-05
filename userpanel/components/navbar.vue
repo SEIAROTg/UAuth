@@ -26,7 +26,6 @@ export default {
 				'isLogout': '',
 			}, {
 				emulateJSON: true,
-				timeout: 50000,
 			}).then(() => {
 				window.location.replace('/');
 			}, () => {
