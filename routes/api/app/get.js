@@ -4,7 +4,6 @@ const db = require('../../../db');
 
 module.exports = co.wrap(function*(req, res) {
 	let app = yield db.query('SELECT * FROM app WHERE appid=? LIMIT 1', [req.params.id]);
-	let ok = false;
 	if (!app.length) {
 		res.status(404).json({
 			code: 404,
