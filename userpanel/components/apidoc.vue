@@ -17,19 +17,19 @@
 			<tr>
 				<td class="tight">appid</td>
 				<td class="tight">Yes</td>
-				<td>Your appid "{{app.appid}}"</td>
+				<td>Your appid <code>{{app.appid}}</code></td>
 			</tr>
 			<tr>
 				<td class="tight">response_type</td>
 				<td class="tight">Yes</td>
-				<td>Must be "code"</td>
+				<td>Must be <code>code</code></td>
 			</tr>
 			<tr>
 				<td class="tight">scope</td>
 				<td class="tight">Yes</td>
 				<td>
-					<p>Specify the information fields that you need by concatenate them with "+".</p><p>Only the fields that you have applied for is allowed.</p>
-					<p><b>Example:</b> "id+basic+email"</p>
+					<p>Specify the information fields that you need by concatenate them with <code>+</code>.</p><p>Only the fields that you have applied for is allowed.</p>
+					<p><b>Example:</b> <code>id+basic+email</code></p>
 				</td>
 			</tr>
 			<tr>
@@ -82,7 +82,7 @@
 			<tr>
 				<td>appid</td>
 				<td>Yes</td>
-				<td>Your App ID "{{app.appid}}"</td>
+				<td>Your App ID <code>{{app.appid}}</code></td>
 			</tr>
 			<tr>
 				<td>appsecret</td>
@@ -92,7 +92,7 @@
 			<tr>
 				<td>grant_type</td>
 				<td>Yes</td>
-				<td>Must be "authorization_code"</td>
+				<td>Must be <code>authorization_code</code></td>
 			</tr>
 			<tr>
 				<td>code</td>
@@ -123,9 +123,9 @@
 				<td class="tight">String</td>
 				<td>The role of user. May be one of the following:
 					<ul>
-						<li>"staff" for staff</li>
-						<li>"domestic" for domestic student</li>
-						<li>"international" for international student</li>
+						<li><code>staff</code> for staff</li>
+						<li><code>domestic</code> for domestic student</li>
+						<li><code>international</code> for international student</li>
 					</ul>
 				</td>
 			</tr>
@@ -143,7 +143,7 @@
 			<tr>
 				<td class="tight">gender</td>
 				<td class="tight">String</td>
-				<td>"M" for male or "F" for female</td>
+				<td><code>M</code> for male or <code>F</code> for female</td>
 			</tr>
 			<tr>
 				<td class="tight">email</td>
@@ -155,7 +155,7 @@
 				<td class="tight">year</td>
 				<td class="tight" rowspan="2">year</td>
 				<td class="tight">Number</td>
-				<td>1 for Preliminary Year; 2 for Qualifying Year; 3 for Part I; 4 for Part II (only applicable for undergraduate)</td>
+				<td><code>1</code> for Preliminary Year; <code>2</code> for Qualifying Year; <code>3</code> for Part I; <code>4</code> for Part II (only applicable for undergraduate)</td>
 			</tr>
 			<tr>
 				<td class="tight">entranceYear</td>
