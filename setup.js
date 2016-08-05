@@ -85,12 +85,13 @@ yield db.query(`CREATE TABLE IF NOT EXISTS log (
 	FOREIGN KEY (appid) REFERENCES app(appid)
 )`);
 
-yield db.query(`CREATE EVENT IF NOT EXISTS clearExpiredCode
+yield db.query(`CREATE EVENT IF NOT EXISTS clearExpiredData
 ON SCHEDULE
 	EVERY 1 DAY
 DO
 	BEGIN
 		DELETE FROM code WHERE expiration < NOW();
+		DELETE FROM log WHERE DATEDIFF(now(), time) > 30;
 	END
 `);
 
