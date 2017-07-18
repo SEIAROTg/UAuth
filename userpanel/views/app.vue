@@ -15,12 +15,6 @@ export default {
 			app: {}
 		};
 	},
-	ready() {
-		this.$http.get(`/api/app/${this.$route.params.id}`)
-		.then((ret) => {
-			this.app = ret.data;
-		});
-	}
 };
 
 </script>

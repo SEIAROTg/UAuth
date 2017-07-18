@@ -3,7 +3,7 @@ const db = require('../../../db');
 
 function transformApp(row) {
 	return {
-		id: row.appid,
+		id: row.id,
 		name: row.name,
 		description: row.description,
 		ownerType: row.ownerType,
@@ -19,7 +19,7 @@ module.exports = asynchronize(function*(req, res) {
 			message: 'access denied',
 		});
 	} else {
-		let apps = yield db.query('SELECT appid, name, description, ownerType, status FROM app');
+		let apps = yield db.query('SELECT id, name, description, ownerType, status FROM app');
 
 		res.status(200).json({
 			code: 0,

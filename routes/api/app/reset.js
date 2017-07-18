@@ -29,15 +29,15 @@ module.exports = asynchronize(function*(req, res) {
 		});
 	} else {
 		try {
-			let appsecret = (yield promisify(crypto.randomBytes)(20)).toString('hex');
+			let secret = (yield promisify(crypto.randomBytes)(20)).toString('hex');
 
-			yield db.query('UPDATE app SET appsecret=:appsecret WHERE id=:id LIMIT 1', {
-				appsecret,
+			yield db.query('UPDATE app SET secret=:secret WHERE id=:id LIMIT 1', {
+				secret,
 				id: req.params.id,
 			});
 			res.status(200).json({
 				code: 0,
-				data: appsecret,
+				data: secret,
 			});
 		} catch (e) {
 			res.status(500).json({

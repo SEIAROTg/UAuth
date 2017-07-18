@@ -17,7 +17,7 @@
 			<tr>
 				<td class="tight">appid</td>
 				<td class="tight">Yes</td>
-				<td>Your appid <code>{{app.appid}}</code></td>
+				<td>Your appid <code>{{app.id}}</code></td>
 			</tr>
 			<tr>
 				<td class="tight">response_type</td>
@@ -82,7 +82,7 @@
 			<tr>
 				<td>appid</td>
 				<td>Yes</td>
-				<td>Your App ID <code>{{app.appid}}</code></td>
+				<td>Your App ID <code>{{app.id}}</code></td>
 			</tr>
 			<tr>
 				<td>appsecret</td>

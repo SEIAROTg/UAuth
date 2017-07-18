@@ -23,12 +23,15 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "mariasql": "^0.2.6",
     "morgan": "~1.6.1",
+    "request": "^2.74.0",
     "serve-favicon": "~2.3.0",
     "session-file-store": "^0.2.0",
+    "useragent": "^2.1.9",
     "vue-hot-reload-api": "^2.0.5",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^8.5.3",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "yamlparser": "0.0.2"
   }
 }

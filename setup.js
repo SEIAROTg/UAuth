@@ -47,8 +47,8 @@ yield db.connect({
 });
 
 yield db.query(`CREATE TABLE IF NOT EXISTS app (
-	appid VARCHAR(18) PRIMARY KEY,
-	appsecret VARCHAR(40),
+	id VARCHAR(18) PRIMARY KEY,
+	secret VARCHAR(40),
 	name TEXT NOT NULL,
 	ownerType ENUM("individual", "org", "university") NOT NULL,
 	ownerName TEXT NOT NULL,
@@ -66,7 +66,7 @@ yield db.query(`CREATE TABLE IF NOT EXISTS code (
 	user VARCHAR(7) NOT NULL,
 	scope TEXT NOT NULL,
 	expiration DATETIME NOT NULL,
-	FOREIGN KEY (appid) REFERENCES app(appid)
+	FOREIGN KEY (appid) REFERENCES app(id)
 )`);
 
 yield db.query(`CREATE TABLE IF NOT EXISTS admin (
@@ -82,7 +82,7 @@ yield db.query(`CREATE TABLE IF NOT EXISTS log (
 	os VARCHAR(50),
 	browser VARCHAR(50),
 	ip VARCHAR(50),
-	FOREIGN KEY (appid) REFERENCES app(appid)
+	FOREIGN KEY (appid) REFERENCES app(id)
 )`);
 
 yield db.query(`CREATE EVENT IF NOT EXISTS clearExpiredData

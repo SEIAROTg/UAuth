@@ -41,7 +41,7 @@
 	<div class="panel-body">
 		<div class="row">
 			<label for="appid" class="col-xs-2">App ID</label>
-			<div id="appid"><span>{{app.appid}}</span></div>
+			<div id="appid"><span>{{app.id}}</span></div>
 		</div>
 		<div class="row" v-if="!isAdmin">
 			<label for="appsecret" class="col-xs-2">App Secret</label>
@@ -58,7 +58,7 @@
 		<ul>
 			<li v-for="domain in app.domains">{{domain}}</li>
 		</ul>
-		<p v-if="!domains.length">You have not configured redirecting domains yet.</p>
+		<p v-if="!app.domains.length">You have not configured redirecting domains yet.</p>
 		<hr v-if="!isAdmin">
 		<button @click="showDomainsEdit" v-if="!isAdmin" class="btn btn-default">Edit</button>
 	</div>
@@ -69,11 +69,11 @@
 	<div class="panel-body">
 		<p v-if="app.reason === ''"><i>No content here</i></p>
 		<p v-if="app.reason !== '' && app.status === 'pending'">{{app.reason}}</p>
-		<hr v-if="app.status !== 'pending' || isAdmin">
-		<button v-if="isAdmin && app.status === 'pending'" class="btn btn-primary">Approve</button>
-		<button v-if="isAdmin && app.status === 'pending'" class="btn btn-default">Reject</button>
-		<button v-if="app.status === 'enabled'" class="btn btn-warning">Disable</button>
-		<button v-if="app.status === 'disabled'" class="btn btn-warning">Enable</button>
+		<hr v-if="app.status === 'pending' && isAdmin">
+		<button v-if="isAdmin && app.status === 'pending'" @click="shownApprove = true" class="btn btn-primary">Approve</button>
+		<button v-if="isAdmin && app.status === 'pending'" @click="shownReject = true" class="btn btn-default">Reject</button>
+		<button v-if="app.status === 'enabled'" @click="performDisable" class="btn btn-warning">Disable</button>
+		<button v-if="app.status === 'disabled'" @click="performEnable" class="btn btn-warning">Enable</button>
 		<button v-if="app.status !== 'pending'" @click="showDelete" class="btn btn-danger">Delete</button>
 	</div>
 </div>
@@ -114,7 +114,7 @@
 		<h4 class="modal-title">App Secret</h4>
 	</div>
 	<div slot="modal-body" class="modal-body">
-		<p>{{app.appsecret}}</p>
+		<p>{{app.secret}}</p>
 	</div>
 	<div slot="modal-footer" class="modal-footer">
 		<button type="button" @click="shownAppSecret = false" class="btn btn-default">OK</button>
@@ -169,6 +169,32 @@
 	</div>
 </modal>
 
+<modal :show.sync="shownApprove" effect="fade" backdrop="false">
+	<div slot="modal-header" class="modal-header">
+		<h4 class="modal-title">Delete App</h4>
+	</div>
+	<div slot="modal-body" class="modal-body">
+		<p>Are you sure you want to approve this app?</p>
+	</div>
+	<div slot="modal-footer" class="modal-footer">
+		<button type="button" @click="shownApprove = false" class="btn btn-default">Cancel</button>
+		<button type="button" @click="performApprove" class="btn btn-warning">Approve</button>
+	</div>
+</modal>
+
+<modal :show.sync="shownReject" effect="fade" backdrop="false">
+	<div slot="modal-header" class="modal-header">
+		<h4 class="modal-title">Delete App</h4>
+	</div>
+	<div slot="modal-body" class="modal-body">
+		<p>Are you sure you want to reject this app?</p>
+	</div>
+	<div slot="modal-footer" class="modal-footer">
+		<button type="button" @click="shownReject = false" class="btn btn-default">Cancel</button>
+		<button type="button" @click="performReject" class="btn btn-warning">Reject</button>
+	</div>
+</modal>
+
 </template>
 
 <script>
@@ -218,6 +244,31 @@ export default {
 		},
 		performDelete() {
 			
+		},
+		performApprove() {
+			this.$http.post(`/api/app/${this.app.id}/approve`)
+			.then(() => {
+				return this.loadData();
+			})
+			.then(() => {
+				this.shownApprove = false;
+			});
+		},
+		performReject() {
+			this.$http.post(`/api/app/${this.app.id}/reject`)
+			.then(() => {
+				return this.loadData();
+			})
+			.then(() => {
+				this.shownReject = false;
+			});
+		},
+		loadData() {
+			return this.$http.get(`/api/app/${this.$route.params.id}`)
+			.then((ret) => {
+				this.app = ret.data;
+				console.log(this.app);
+			});
 		}
 	},
 	data() {
@@ -228,6 +279,8 @@ export default {
 			shownResetSecret: false,
 			shownDomainEdit: false,
 			shownDelete: false,
+			shownApprove: false,
+			shownReject: false,
 			confirmAppName: '',
 			domainsTemp: [,,],
 			domainRule: {
@@ -244,6 +297,9 @@ export default {
 			return /\d{7}/.test(this.transferUserId);
 		}
 	},
+	ready() {
+		this.loadData();
+	}
 };
 
 </script>
@@ -291,6 +347,10 @@ hr {
 td.tight, th.tight {
 	width: 1%;
 	vertical-align: middle;
+}
+
+button+button {
+	margin-left: 5px;
 }
 
 </style>

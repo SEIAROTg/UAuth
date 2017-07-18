@@ -32,15 +32,15 @@ module.exports = asynchronize(function*(req, res) {
 	}
 
 	try {
-		let appid = 'ua' + (yield promisify(crypto.randomBytes)(8)).toString('hex');
+		let id = 'ua' + (yield promisify(crypto.randomBytes)(8)).toString('hex');
 
 		yield db.query(
 	'INSERT INTO app (\
-	appid, name, ownerType, ownerName, ownerUser, description, status, scope, reason, domains\
+	id, name, ownerType, ownerName, ownerUser, description, status, scope, reason, domains\
 	) VALUES (\
-	:appid, :name, :ownerType, :ownerName, :ownerUser, :description, "pending", :scope, :reason, ""\
+	:id, :name, :ownerType, :ownerName, :ownerUser, :description, "pending", :scope, :reason, ""\
 	)', {
-			appid,
+			id,
 			name: req.body.name,
 			ownerType: req.body.ownerType,
 			ownerName: req.body.ownerName,
@@ -53,7 +53,7 @@ module.exports = asynchronize(function*(req, res) {
 		res.status(201).json({
 			code: 0,
 			data: {
-				appid,
+				id,
 			}
 		});
 	} catch (e) {

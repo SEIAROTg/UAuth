@@ -5,7 +5,7 @@ import myapp from './views/myapp.vue'
 import apps from './views/apps.vue';
 import app from './views/app.vue';
 
-let router = new VueRouter();
+const router = new VueRouter();
 
 router.map({
 	'/mylogins/': {

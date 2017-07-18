@@ -2,7 +2,7 @@ const asynchronize = require('../../../common').asynchronize;
 const db = require('../../../db');
 
 module.exports = asynchronize(function*(req, res) {
-	let app = yield db.query('SELECT * FROM app WHERE appid=? LIMIT 1', [req.params.id]);
+	let app = yield db.query('SELECT * FROM app WHERE id=? LIMIT 1', [req.params.id]);
 	if (!app.length) {
 		res.status(404).json({
 			code: 404,
@@ -18,12 +18,12 @@ module.exports = asynchronize(function*(req, res) {
 					ownerName: app[0].ownerName,
 					ownerUserId: app[0].ownerUser,
 					ownerUserName: 'John Doe',
-					appid: app[0].appid,
-					appsecret: app[0].appsecret,
+					id: app[0].id,
+					secret: app[0].secret,
 					status: app[0].status,
 					scopes: app[0].scope.split('+'),
 					reason: app[0].reason,
-					domains: app[0].domains.split('|'),
+					domains: app[0].domains ? app[0].domains.split('|') : [],
 				},
 			});
 		} else if (req.isAdmin) {
@@ -35,11 +35,11 @@ module.exports = asynchronize(function*(req, res) {
 					ownerName: app[0].ownerName,
 					ownerUserId: app[0].ownerUser,
 					ownerUserName: 'John Doe',
-					appid: app[0].appid,
+					id: app[0].id,
 					status: app[0].status,
 					scopes: app[0].scope.split('+'),
 					reason: app[0].reason,
-					domains: app[0].domains.split('|'),
+					domains: app[0].domains ? app[0].domains.split('|') : [],
 				},
 			});
 		} else {

@@ -3,7 +3,7 @@ const db = require('../../../db');
 
 function transformApp(row) {
 	return {
-		id: row.appid,
+		id: row.id,
 		name: row.name,
 		description: row.description,
 		ownerType: row.ownerType,
@@ -13,7 +13,7 @@ function transformApp(row) {
 
 module.exports = asynchronize(function*(req, res) {
 
-	let apps = yield db.query('SELECT appid, name, description, ownerType, status FROM app WHERE ownerUser=?', [req.session.userId]);
+	let apps = yield db.query('SELECT id, name, description, ownerType, status FROM app WHERE ownerUser=? AND status<>"deleted"', [req.session.userId]);
 
 	res.status(200).json({
 		code: 0,
