@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<meta name="viewport" content="width=device-width">
+</head>
+<body>
+	<div>{{username}}</div>
+	<form method="POST" action="/logout">
+		<button type="submit">Log out</button>
+		<input name="csrf" type="hidden" value="{{csrfToken}}">
+	</form>
+</body>
+</html>
