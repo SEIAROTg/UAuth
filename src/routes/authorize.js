@@ -24,13 +24,16 @@ module.exports = async (ctx) => {
 	assert(ctx.query.scope, 'Invalid Argument: scope');
 	const scopes = ctx.query.scope.split('+');
 	const state = ctx.query.state;
+	let redirect_uri;
+	assert.doesNotThrow(() => redirect_uri = new url.URL(ctx.query.redirect_uri));
 	const appConfig = config.apps[appid];
 	assert(appid, 'Invalid Argument: appid');
+	assert(appConfig, 'Invalid Argument: appid');
+	assert(redirect_uri.origin === appConfig.redirect, 'Invalid Argument: redirect_uri');
 	assert(responseType === 'code', 'Invalid Argument: response_type');
 	for (const scope of scopes) {
 		assert(appConfig.scopes.includes(scope), 'Invalid Argument: scope');
 	}
-	assert(appConfig, 'Invalid Argument: appid');
 	assert(!state || state.length <= 256, 'Invalid Argument: state');
 	const username = ctx.session.username;
 	if (!username) {
@@ -61,7 +64,6 @@ module.exports = async (ctx) => {
 	// did not use `setx` / `setex` / `set EX` to be compatiable with both redis and ssdb
 	await db.code.expire(code, 60);
 
-	const redirect_uri = new url.URL(appConfig.redirect_uri);
 	redirect_uri.searchParams.set('code', code);
 	state && redirect_uri.searchParams.set('state', state);
 	ctx.redirect(redirect_uri.href);

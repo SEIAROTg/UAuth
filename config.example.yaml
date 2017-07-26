@@ -43,7 +43,7 @@ wechat:
 apps:
     appid:
         appsecret    : appsecret
-        redirect_uri : https://www.domain.com/oauth
+        redirect     : https://www.domain.com
         scopes       :
             - username
             - name
