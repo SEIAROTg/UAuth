@@ -1,0 +1,50 @@
+server:
+    host  : 127.0.0.1
+    port  : 3000
+    https : false
+    proxy : false
+
+redis:
+    session:
+        host : 127.0.0.1
+        port : 6379
+        db   : 10
+    code:
+        host : 127.0.0.1
+        port : 6379
+        db   : 11
+    wechat:
+        host : 127.0.0.1
+        port : 6379
+        db   : 12
+
+ldap:
+    server:
+        url            : ldaps://ldap.domain.com
+        timeout        : 10000
+        connectTimeout : 10000
+    admin_dn      : CN=admin,OU=Users,DC=domain,DC=com
+    admin_pw      : password
+    search_base   : OU=Users,DC=domain,DC=com
+    search_filter : (&(objectClass=user)(sAMAccountName={username}))
+
+    fields:
+        username    : sAMAccountName
+        name        : displayName
+
+openid:
+    secret : pz2Un8g10yvAN4HknJQNnazMXZEITcZfzxRiTXgClk
+
+wechat:
+    enabled   : true
+    appid     : wx0000000000000000
+    appsecret : 00000000000000000000000000000000
+
+apps:
+    appid:
+        appsecret    : appsecret
+        redirect_uri : https://www.domain.com/oauth
+        scopes       :
+            - username
+            - name
+            - openid
