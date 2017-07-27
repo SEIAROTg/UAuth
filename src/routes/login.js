@@ -19,11 +19,12 @@ module.exports = async (ctx) => {
 	}
 
 	let message;
+	let username = '';
 	try {
 		if (!ctx.session.username && ctx.method === 'POST') {
 			assert(ctx.session.csrfToken === ctx.request.body.csrf, 'Page Timeout');
 
-			const username = ctx.request.body.username;
+			username = ctx.request.body.username;
 			const password = ctx.request.body.password;
 
 			assert(username, 'Invalid Username');
@@ -48,6 +49,7 @@ module.exports = async (ctx) => {
 	} else {
 		await ctx.render('login', {
 			message,
+			username,
 			csrfToken: ctx.session.csrfToken,
 		});
 	}
