@@ -3,6 +3,7 @@ const path = require('path');
 const crypto = require('mz/crypto');
 const Koa = require('koa');
 const _ = require('koa-route');
+const serve = require('koa-static');
 const session = require('koa-session');
 const bodyParser = require('koa-bodyparser');
 const redisStore = require('koa-redis');
@@ -44,6 +45,7 @@ app.use(hbs.middleware({
 	viewPath: path.join(__dirname, 'views'),
 }));
 app.use(CsrfMiddleware);
+app.use(serve(path.join(__dirname, 'static')));
 with (routes) {
 	app.use(_.get('/', dashboard));
 	app.use(_.get('/wechat', wechat));
