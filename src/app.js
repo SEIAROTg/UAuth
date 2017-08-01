@@ -56,4 +56,4 @@ with (routes) {
 	app.use(_.get('/user_info', userInfo));
 }
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || config.server.port || 3000);
