@@ -22,7 +22,7 @@ module.exports = async (ctx) => {
 	const appid = ctx.query.appid;
 	const responseType = ctx.query.response_type;
 	assert(ctx.query.scope, 'Invalid Argument: scope');
-	const scopes = ctx.query.scope.split('+');
+	const scopes = ctx.query.scope.split(' ');
 	const state = ctx.query.state;
 	let redirect_uri;
 	assert.doesNotThrow(() => redirect_uri = new url.URL(ctx.query.redirect_uri));
