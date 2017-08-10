@@ -10,11 +10,12 @@ module.exports = async (ctx) => {
 
 	if (!ctx.session.wechatId && utils.isWechat(ctx)) {
 		ctx.session.wechatState = (await crypto.randomBytes(16)).toString('hex');
+		const redirect = `${ctx.origin}/wechat?redirect=${encodeURIComponent(redirectUrl)}`;
 		const urlGetCode =
 			`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${config.wechat.appid}` +
-			`&redirect_uri=${encodeURIComponent(ctx.origin + '/wechat')}` +
+			`&redirect_uri=${encodeURIComponent(redirect)}` +
 			`&response_type=code&scope=snsapi_base&state=${ctx.session.wechatState}#wechat_redirect`;
-		ctx.redirect(urlGetCode)
+		ctx.redirect(urlGetCode);
 		return;
 	}
 
