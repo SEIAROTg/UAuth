@@ -47,7 +47,7 @@ module.exports = async (ctx) => {
 		if (scope === 'openid') {
 			userInfo[scope] = await getOpenid(appid, username);
 		} else if (scope === 'wechatid') {
-			userInfo[scope] = req.session.wechatId;
+			userInfo[scope] = ctx.session.wechatId;
 		} else {
 			const target = config.ldap.fields[scope];
 			userInfo[scope] = userObj[target];
