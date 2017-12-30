@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const assert = require('assert');
 const path = require('path');
 const crypto = require('mz/crypto');
